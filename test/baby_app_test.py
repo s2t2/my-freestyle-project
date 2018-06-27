@@ -1,4 +1,4 @@
-from Freestyle_App.baby_name_app import *
+from app.bab_name_app import *
 
 def test_read_name_boy():
     result = len(read_names_from_file(filename="babynames_boys.csv"))
