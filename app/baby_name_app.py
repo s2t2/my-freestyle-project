@@ -135,27 +135,14 @@ def name_information():
     response_json = json.loads(response_2.text)
     print(f"This is the language origin for {user_input_related_names.title()}: " + (response_json[0]['usages'][0]['usage_full']))
 
-def read_names_from_file(filename="babynames_boys.csv"):
-    filepath = os.path.join(os.path.dirname(__file__), "data", filename)
+def read_names_from_file(filename="data/babynames_boys.csv"):
+    filepath = os.path.join(os.path.dirname(__file__), "..", filename)
     babynames_boys = []
     with open(filepath, "r") as csv_file:
         reader = csv.DictReader(csv_file)
         for row in reader:
             babynames_boys.append(dict(row))
     return babynames_boys
-
-def read_names_from_file_girl(filename="babynames_girls.csv"):
-    filepath = os.path.join(os.path.dirname(__file__), "data", filename)
-    babynames_girls = []
-    with open(filepath, "r") as csv_file:
-        reader = csv.DictReader(csv_file)
-        for row in reader:
-            babynames_girls.append(dict(row))
-    return babynames_girls
-
-babynames_boys = read_names_from_file()
-
-babynames_girls = read_names_from_file_girl()
 
 def name_rankings():
     user_gender_preference = input("Please enter the gender of the baby names you'd like to see rankings for: ")
@@ -215,4 +202,6 @@ def run():
         run()
 
 if __name__ == "__main__":
+    babynames_boys = read_names_from_file(filename="data/babynames_boys.csv")
+    babynames_girls = read_names_from_file(filename="data/babynames_girls.csv")
     run()
